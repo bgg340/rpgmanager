@@ -18,7 +18,7 @@ public class Group {
 	private long groupId;
 	private String groupName;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "characters")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "group")
 	private List<Character> characters;
 
 	

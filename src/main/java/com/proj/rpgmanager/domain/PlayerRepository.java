@@ -7,5 +7,5 @@ import org.springframework.security.core.userdetails.User;
 
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 	
-	User findByUsername(String playerName);
+	Player findByUsername(String playerName);
 }
