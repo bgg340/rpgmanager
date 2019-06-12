@@ -42,6 +42,7 @@ public class PlayerController {
 		    	newPlayer.setPasswordHash(hashPwd);
 		    	newPlayer.setUsername(signupForm.getUsername());
 		    	newPlayer.setRole("USER");
+		    	newPlayer.setCharacter(null);
 		    	if (playerRepository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
 		    		playerRepository.save(newPlayer);
 		    	}

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.proj.rpgmanager.domain.Character;
 import com.proj.rpgmanager.domain.CharacterRepository;
 import com.proj.rpgmanager.domain.GroupRepository;
-import com.proj.rpgmanager.domain.PlayerRepository;
+
 
 
 @Controller
@@ -26,33 +26,13 @@ public class CharacterController {
 		@Autowired
 		private GroupRepository groupRepository;
 		
-		@Autowired
-		private PlayerRepository playerRepository;
+		
 	
 		@RequestMapping("/charlist")
 		public String characterList(Model model) {
 			model.addAttribute("characters", characterRepository.findAll());
 			return "charlist";
 		}
-		
-		
-		
-		
-		@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-		public String deleteCharacter(@PathVariable("id") long id, Model model) {
-			characterRepository.deleteById(id);
-			return "redirect:../charlist";
-		}
-		
-		//edit
-		@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-		public String editCharacter(@PathVariable("id") long id, Model model) {
-
-			model.addAttribute("character", characterRepository.findById(id));
-			model.addAttribute("groups", characterRepository.findAll());
-			return "editchar";
-		}
-		
 		
 		@RequestMapping(value = "/add")
 		public String addCharacter(Model model) {
@@ -66,6 +46,27 @@ public class CharacterController {
 			characterRepository.save(character);
 			return "redirect:charlist";
 		}
+		
+		
+		@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+		public String deleteCharacter(@PathVariable("id") long id, Model model) {
+			characterRepository.deleteById(id);
+			return "redirect:../charlist";
+		}
+		
+		//edit
+		@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+		public String editCharacter(@PathVariable("id") long id, Model model) {
+
+			model.addAttribute("character", characterRepository.findById(id));
+			model.addAttribute("groups", groupRepository.findAll());
+			return "editchar";
+		}
+		
+		
+		
+		
+		
 
 		
 		@RequestMapping(value = "/characters", method=RequestMethod.GET)

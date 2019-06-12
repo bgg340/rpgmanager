@@ -22,30 +22,28 @@
 	</div>
 		
 		
-		
-		
-		
 		<tr>
-		<td>title</td>
-		<td>author</td>
-		<td>year</td>
-		<td>isbn</td>
-		<td>price</td>
+		<td>Name</td>
+		<td>Class</td>
+		<td>Race</td>
+		<td>Description</td>
+		
 		<td></td>
 		</tr>
 		
-			<tr th:each="book : ${books}">
-				<td th:text="${book.title}"></td>
-				<td th:text="${book.author}"></td>
-				<td th:text="${book.year}"></td>
-				<td th:text="${book.isbn}"></td>
-				<td th:text="${book.price}"></td>
-				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+			<tr th:each="character : ${characters}">
+				<td th:text="${character.name}"></td>
+				<td th:text="${character.charclass}"></td>
+				<td th:text="${character.race}"></td>
+				<td th:text="${character.description}"></td>
+				
+				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${character.id})}">Delete</a></td>
+				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${character.id})}">Edit</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<a href="/add">Add book</a>
+	<div sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add character</a></div>
+	<div           ><a href="@{/edit/{id}(id=${character.id})}">Create character</a></div>
 </body>
 
 </html>
