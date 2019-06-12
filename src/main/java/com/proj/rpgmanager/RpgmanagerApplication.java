@@ -40,6 +40,7 @@ public class RpgmanagerApplication {
 		characterRepository.save(char2);
 		characterRepository.save(char3);
 		
+
 		Player p1 = new Player("Jäbä", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", char1);
 		Player p2 = new Player("Jubu", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", char2);
 		Player p3 = new Player("Jebo", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", char3);
@@ -49,7 +50,6 @@ public class RpgmanagerApplication {
 		playerRepository.save(p2);
 		playerRepository.save(p3);
 		playerRepository.save(p4);
-		
 		
 	};
 	}
