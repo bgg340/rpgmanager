@@ -1,11 +1,15 @@
 package com.proj.rpgmanager.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,6 +25,7 @@ public class Character {
 	private String charclass;
 	private String race;
 	private String description;
+	private String fulldesc;
 	
 	private int level;
 	private int str;
@@ -38,14 +43,19 @@ public class Character {
 	@JoinColumn(name="groupId")
 	private Group group;
 	
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "character")
+	private List<Player> players;
 			
+	
+	
 	public Character() {
 		
 	}
 	
 	
 	public Character( String name, String charclass, String race, String description, int level, int str,
-			int dex, int con, int inte, int wis, int cha, int hp, int hitdie, Group group) {
+			int dex, int con, int inte, int wis, int cha, int hp, int hitdie, String fulldesc, Group group) {
 		
 		super();
 		this.name = name;
@@ -62,6 +72,7 @@ public class Character {
 		this.hp = hp;
 		this.hitdie = hitdie;
 		this.group = group;
+		this.fulldesc = fulldesc;
 		
 	}
 	
@@ -155,6 +166,49 @@ public class Character {
 	}
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+	
+	
+	
+	
+	
+	public String getFulldesc() {
+		return fulldesc;
+	}
+
+
+	public void setFulldesc(String fulldesc) {
+		this.fulldesc = fulldesc;
+	}
+
+
+	//additional getters for derivative stats
+	public int getAc() {
+		int ac = 10 + ((this.dex - 10) /2);
+		
+		return ac;
+		
+	}
+	public int getPassivewis() {
+		int passivewis = 10 + ((this.wis - 10) /2);
+		return passivewis;
+	}
+	
+	public int getIni() {
+		int ini = ((this.dex - 10) /2);
+		return ini;
+	}
+	
+	
+	
+	//the list thing
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 	
 	

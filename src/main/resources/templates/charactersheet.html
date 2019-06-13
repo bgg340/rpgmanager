@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Character sheet</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/rpg.css}"/>
+
+
+
+</head>
+<body>
+	<h1>Character sheet</h1>
+	<table>
+		<tbody th:each="character : ${characters}" th:if="${character.id} == ${id}">
+		
+				
+		<tr id="guide">
+		<td>Name</td>
+		<td>Race</td>
+		<td>Class</td>
+		<td>Hit die</td>
+		<td>level</td>
+		
+		
+		</tr>
+		
+			<tr>
+				<td th:text="${character.name}"> </td>
+				<td th:text="${character.race}"></td>
+				<td th:text="${character.charclass}"></td>
+				<td th:text="${character.hitdie}"></td>
+				<td th:text="${character.level}"></td>
+				
+				
+			</tr>
+			
+		<tr id="guide">
+			<td>Health</td>
+			<td>Armor Class</td>
+			<td>Initiative</td>
+			<td>Passive wisdom</td>
+		</tr>
+		
+		<tr>
+			<td th:text="${character.hp}"> </td>
+			<td th:text="${character.ac}"></td>
+			<td th:text="${character.ini}"></td>
+			<td th:text="${character.passivewis}"></td>
+				
+			</tr>
+			
+			<tr id="guide">
+		<td>Strength</td>
+		<td>Dexterity</td>
+		<td>Constitution</td>
+		<td>Intelligence</td>
+		<td>Wisdom</td>
+		<td>Charisma</td>
+	
+		</tr>
+		
+			<tr>
+				<td th:text="${character.str}"> </td>
+				<td th:text="${character.dex}"></td>
+				<td th:text="${character.con}"></td>
+				<td th:text="${character.inte}"></td>
+				<td th:text="${character.wis}"></td>
+				<td th:text="${character.cha}"></td>
+				
+				
+			</tr>
+			
+		<tr id="guide">	
+			<td>Group</td>
+			<td>Short Description</td>
+			
+		</tr>
+			
+		<tr>
+			<td th:text="${character.group.groupName}"></td>
+			<td th:text="${character.description}"></td>
+				
+			
+		 </tr>
+			
+			
+			
+			
+		</tbody>
+	</table>
+	
+	
+	<div th:each="character : ${characters}" th:if="${character.id} == ${id}">
+	<p>Full Backstory:</p>
+	<p th:text="${character.fulldesc}"></p>
+	
+	
+	<p td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${character.id})}">Delete</a></p>
+				<p td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${character.id})}">Edit</a></p>
+			</div>
+	
+	</br>
+	<a href="/charlist">Back</a>
+	<div>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+</body>
+
+</html>
+

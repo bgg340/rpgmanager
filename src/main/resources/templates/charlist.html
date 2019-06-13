@@ -2,23 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<title>Booklist</title>
+	<title>Character List</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/rpg.css}"/>
+
 </head>
 <body>
-	<h1>List of books</h1>
+	<h1>Rpg Manager</h1>
 	<table>
 		<tbody>
 		
 		
 		<div>
-		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		<h3 th:inline="text">Welcome to the character list [[${#httpServletRequest.remoteUser}]]</h3>
+		<p>Click on a name to view more information</p>
 	</div>
 	<div>
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
-		</form>
+		
 	</div>
 		
 		
@@ -27,23 +28,33 @@
 		<td>Class</td>
 		<td>Race</td>
 		<td>Description</td>
+		<td>Group</td>
 		
+		<td></td>
 		<td></td>
 		</tr>
 		
 			<tr th:each="character : ${characters}">
-				<td th:text="${character.name}"></td>
+				<td> <a th:href="@{/charactersheet/{id}(id=${character.id})}"> <div th:text="${character.name}"> </div></a></td>
 				<td th:text="${character.charclass}"></td>
 				<td th:text="${character.race}"></td>
 				<td th:text="${character.description}"></td>
+				<td th:text="${character.group.groupName}"></td>
 				
 				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${character.id})}">Delete</a></td>
 				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${character.id})}">Edit</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<div sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add character</a></div>
-	<div           ><a href="@{/edit/{id}(id=${character.id})}">Create character</a></div>
+	</br>
+	<div td sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add character</a></div>
+	<div td sec:authorize="hasAuthority('ADMIN')"><a href="/playerlist">Edit players and their settings</a></div>
+	<div td sec:authorize="hasAuthority('USER')"><a href="/add">Create your own character for admin approval</a></div>
+	<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	
+	
 </body>
 
 </html>

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.proj.rpgmanager.domain.Character;
 import com.proj.rpgmanager.domain.CharacterRepository;
 import com.proj.rpgmanager.domain.GroupRepository;
+import com.proj.rpgmanager.domain.Player;
+import com.proj.rpgmanager.domain.PlayerRepository;
+
 
 
 
@@ -26,13 +29,35 @@ public class CharacterController {
 		@Autowired
 		private GroupRepository groupRepository;
 		
+		@Autowired
+		private PlayerRepository playerRepository;
+		
 		
 	
 		@RequestMapping("/charlist")
 		public String characterList(Model model) {
 			model.addAttribute("characters", characterRepository.findAll());
+			model.addAttribute("groups", characterRepository.findAll());
 			return "charlist";
 		}
+		
+		@RequestMapping("/playerlist")
+		public String playerrList(Model model) {
+			model.addAttribute("players", playerRepository.findAll());
+			model.addAttribute("characters", characterRepository.findAll());
+			model.addAttribute("groups", characterRepository.findAll());
+			return "playerlist";
+		}
+		
+		
+		
+		@RequestMapping("/charactersheet/{id}")
+		public String characterSheet(@PathVariable("id") long id, Model model) {
+			model.addAttribute("characters", characterRepository.findAll());
+			model.addAttribute("groups", characterRepository.findAll());
+			return "charactersheet";
+		}
+		
 		
 		@RequestMapping(value = "/add")
 		public String addCharacter(Model model) {
@@ -47,11 +72,24 @@ public class CharacterController {
 			return "redirect:charlist";
 		}
 		
+		@RequestMapping(value = "/saveplr", method = RequestMethod.POST)
+		public String saveplayer(Player player) {
+			playerRepository.save(player);
+			
+			return "redirect:playerlist";
+		}
+		
 		
 		@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 		public String deleteCharacter(@PathVariable("id") long id, Model model) {
 			characterRepository.deleteById(id);
 			return "redirect:../charlist";
+		}
+		
+		@RequestMapping(value = "/deleteplayer/{id}", method = RequestMethod.GET)
+		public String deletePlayer(@PathVariable("id") long id, Model model) {
+			playerRepository.deleteById(id);
+			return "redirect:../playerlist";
 		}
 		
 		//edit
@@ -63,6 +101,13 @@ public class CharacterController {
 			return "editchar";
 		}
 		
+		@RequestMapping(value = "/editplr/{id}", method = RequestMethod.GET)
+		public String editPlayer(@PathVariable("id") long id, Model model) {
+			
+			model.addAttribute("player", playerRepository.findById(id));
+			model.addAttribute("characters", characterRepository.findAll());
+			return "editplayer";
+		}
 		
 		
 		

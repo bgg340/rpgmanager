@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Edit player</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+</head>
+<body>
+	<h1>Edit player</h1>
+	
+	
+	
+	<form th:object="${player}" th:action="@{../saveplr}" action="#" method="post">
+	<input type="hidden" id="playerId" th:field="*{playerId}" />
+	<input type="hidden" id="passwordHash" th:field="*{passwordHash}" />
+	<input type="hidden" id="role" th:field="*{role}" />
+	<input type="text" id="username" th:field="*{username}" />
+	
+	
+	<select id="characterlist" th:field="*{character}" class="form-control">
+	<option th:each="character: ${characters}" th:value="${character.id}" th:text="${character.name}">
+	</option>
+	</select>
+	
+	
+	
+	
+	<input type="submit" class="btn btn-primary" value="Save"></input>	
+	
+	</form>
+	
+	
+</body>
+
+</html>
+

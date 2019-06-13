@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Player List</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/rpg.css}"/>
+
+
+</head>
+<body>
+	<h1>Players and settings</h1>
+	
+	<table>
+		<tbody>
+		
+				
+		<tr>
+		<td>Player</td>
+		<td>Character</td>
+		<td>Group</td>
+		
+		<td></td><td></td><td></td><td></td><td></td>
+		
+		</tr>
+		
+			<tr th:each="player : ${players}">
+				<td th:text="${player.username}"></td>
+				<td th:text="${player.character.name}"></td>
+				<td th:text="${player.character.group.groupName}"></td>
+				
+				
+				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteplayer/{id}(id=${player.playerId})}">Delete</a></td>
+				<td><p>*</p></td>
+				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editplr/{id}(id=${player.playerId})}">Change Player</a></td>
+				<td><p>*</p></td>
+				<td td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${player.character.id})}">Edit Character</a></td>
+		
+				
+				</tr>
+		</tbody>
+	</table>
+	<a href="/charlist">Back</a>
+	<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	
+	
+</body>
+
+</html>
+
