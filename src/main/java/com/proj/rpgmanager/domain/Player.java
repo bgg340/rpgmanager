@@ -10,6 +10,11 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+/* 
+ Our database of Players (users) are built with this.
+
+ */
 @Entity
 public class Player {
 
@@ -33,7 +38,7 @@ public class Player {
 	private Character character;
     
     
-    
+    //constructors
     public Player() {
     	
     }
@@ -46,7 +51,7 @@ public class Player {
 		this.character = character;
 	}
 
-	
+	//get and set
 	public Long getPlayerId() {
 		return playerId;
 	}

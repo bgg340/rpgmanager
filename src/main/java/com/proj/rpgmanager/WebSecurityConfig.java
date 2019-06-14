@@ -10,17 +10,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.proj.rpgmanager.web.UserDetailServiceImpl;
 
-
+//quite self explanatory.
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailServiceImpl userDetailsService;		
 	
+    
+    /*configuring what can be accessed while not logged in.
+    css file access, signing in and making new users is allowed */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.authorizeRequests().antMatchers("/css/**", "/signup", "/saveuser", "/add").permitAll()
+		.authorizeRequests().antMatchers("/css/**", "/signup", "/saveuser").permitAll()
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 		.and()
@@ -32,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.logout()
 			.permitAll();
 	}
+	
 	
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

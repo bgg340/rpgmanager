@@ -22,14 +22,17 @@ import com.proj.rpgmanager.domain.SignupForm;
 public class PlayerController {
 	@Autowired
     private PlayerRepository playerRepository; 
+
 	
+	//request mapping for sign up attempts.
     @RequestMapping(value = "signup")
     public String addStudent(Model model){
     	model.addAttribute("signupform", new SignupForm());
         return "signup";
     }	
     
- 
+    /*saving a new user/player. does error checking, hashes password, sets role and doesn't assign
+    any character for new players */
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
     	if (!bindingResult.hasErrors()) { // validation errors

@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import com.proj.rpgmanager.domain.Player;
 import com.proj.rpgmanager.domain.PlayerRepository;
 
-/**
- * This class is used by spring security to authenticate and authorize user
- **/
+/*
+ Not my own words: "This class is used by spring security to authenticate and authorize user"
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService  {
 	private final PlayerRepository repository;

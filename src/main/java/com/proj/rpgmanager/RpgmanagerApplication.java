@@ -22,9 +22,17 @@ public class RpgmanagerApplication {
 		SpringApplication.run(RpgmanagerApplication.class, args);
 	}
 		
+	
+	//using commandlinerunner to create filler content for our in-memory database
+	
 	@Bean
 	public CommandLineRunner demo(CharacterRepository characterRepository, GroupRepository groupRepository, PlayerRepository playerRepository) {
 	return (args) -> {
+		
+		/*group first, then characters and last the players, aka. users. 
+		 This is due to the structure of our database tables.
+		Can't insert groups for characters if they don't exist.		
+		*/
 		
 		Group group1 = new Group("Main party");
 		Group group2 = new Group("Sidequesters");
@@ -43,6 +51,7 @@ public class RpgmanagerApplication {
 		characterRepository.save(char3);
 		
 
+		//passwords hashed. users have "user" and admin has "admin".
 		Player p1 = new Player("harri", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", char1);
 		Player p2 = new Player("joonas", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", char2);
 		Player p3 = new Player("henna", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", char3);

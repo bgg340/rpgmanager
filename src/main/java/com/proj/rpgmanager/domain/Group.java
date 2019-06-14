@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/* the group entity. apparently Group is a bad word in the database,
+so it had to be altered to charGroup. */
 @Entity
 @Table(name="charGroup")
 public class Group {
@@ -23,7 +24,7 @@ public class Group {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "group")
 	private List<Character> characters;
 
-	
+	//constructors
 	public Group(String groupName) {
 		super();
 		this.groupName = groupName;
@@ -34,7 +35,7 @@ public class Group {
 		
 	}
 
-
+    //get and set
 	public long getGroupId() {
 		return groupId;
 	}

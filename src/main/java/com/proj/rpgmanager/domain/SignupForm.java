@@ -4,6 +4,9 @@ package com.proj.rpgmanager.domain;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
+
+
+//Used to make the sign up form
 public class SignupForm {
     @NotEmpty
     @Size(min=5, max=30)
@@ -20,6 +23,7 @@ public class SignupForm {
     @NotEmpty
     private String role = "USER";
 
+    //get and set
 	public String getUsername() {
 		return username;
 	}

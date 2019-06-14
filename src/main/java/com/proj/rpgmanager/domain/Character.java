@@ -14,7 +14,9 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-
+/*The Character entity. the table with the most information.
+ Almost everything you need to know about your character is here.
+*/
 @Entity
 public class Character {
 
@@ -38,6 +40,8 @@ public class Character {
 	private int hitdie;
 	
 		
+	//groupId is our foreign key connecting the two tables
+	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name="groupId")
@@ -48,7 +52,7 @@ public class Character {
 	private List<Player> players;
 			
 	
-	
+	//constructors
 	public Character() {
 		
 	}
@@ -76,6 +80,8 @@ public class Character {
 		
 	}
 	
+	
+	//get and set
 	
 	public long getId() {
 		return id;
@@ -167,15 +173,10 @@ public class Character {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
-	
-	
-	
-	
-	
+		
 	public String getFulldesc() {
 		return fulldesc;
 	}
-
 
 	public void setFulldesc(String fulldesc) {
 		this.fulldesc = fulldesc;
@@ -201,7 +202,7 @@ public class Character {
 	
 	
 	
-	//the list thing
+	//the list
 	public List<Player> getPlayers() {
 		return players;
 	}
