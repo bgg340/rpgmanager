@@ -34,9 +34,9 @@ public class RpgmanagerApplication {
 		Can't insert groups for characters if they don't exist.		
 		*/
 		
-		Group group1 = new Group("Main party");
-		Group group2 = new Group("Sidequesters");
-		Group group3 = new Group("Unassigned");
+		Group group1 = new Group("Unassigned");
+		Group group2 = new Group("Main party");
+		Group group3 = new Group("Sidequesters");
 		
 		groupRepository.save(group1);
 		groupRepository.save(group2);
