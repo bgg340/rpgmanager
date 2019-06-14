@@ -49,7 +49,7 @@
 	</br>
 	<div td sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add character</a></div>
 	<div td sec:authorize="hasAuthority('ADMIN')"><a href="/playerlist">Edit players and their settings</a></div>
-	<div td sec:authorize="hasAuthority('USER')"><a href="/add">Create your own character for admin approval</a></div>
+	<div td sec:authorize="hasAuthority('USER')"><a href="/useradd">Create your own character for admin approval</a></div>
 	<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 		</form>

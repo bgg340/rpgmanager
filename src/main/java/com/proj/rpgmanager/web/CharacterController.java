@@ -67,6 +67,14 @@ public class CharacterController {
 			return "addcharacter";
 		}
 		
+		//for creating new characters
+				@RequestMapping(value = "/useradd")
+				public String addCharacterAsUser(Model model) {
+					model.addAttribute("character", new Character());
+					model.addAttribute("groups", characterRepository.findAll());
+					return "addcharacter";
+				}
+		
 		
 		//edit
 		@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
