@@ -37,6 +37,6 @@ public class CharacterRepositoryTest {
     	assertThat(character.getId()).isNotNull();
     }    
 	
-      
-	
+    
+   
 }

@@ -4,18 +4,32 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid #1d1a05;
   text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(1) {
-  background-color: #c5c5c5;
+  background-color: #a7a481;
 }
 
 
 #guide {
-  background-color: #c5c5c5;
+  background-color: #a7a481;
 }
 
 
+body {
+	
+	background-color: #f2eecc;
+}
+
+a:link {
+	
+	
+}
+
+a:visited {
+	
+	
+}
