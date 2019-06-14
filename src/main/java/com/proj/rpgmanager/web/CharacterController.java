@@ -63,15 +63,15 @@ public class CharacterController {
 		@RequestMapping(value = "/add")
 		public String addCharacter(Model model) {
 			model.addAttribute("character", new Character());
-			model.addAttribute("groups", characterRepository.findAll());
+			model.addAttribute("groups", groupRepository.findAll());
 			return "addcharacter";
 		}
 		
-		//for creating new characters
+		//same as add, but this was a test for making a separate one for non-admins. this might be useless?
 				@RequestMapping(value = "/useradd")
 				public String addCharacterAsUser(Model model) {
 					model.addAttribute("character", new Character());
-					model.addAttribute("groups", characterRepository.findAll());
+					model.addAttribute("groups", groupRepository.findAll());
 					return "addcharacter";
 				}
 		
